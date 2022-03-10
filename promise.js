@@ -38,8 +38,6 @@ createPost({title:'Post Three',body:'This is Post Three'})
  .then(getposts)
  .catch(err=> console.log(err));
 
-// getposts();
-//createPost({title:'Post Three',body:'This is Post Three'},getposts);
 
 function create4thPost(post){
     return new Promise((resolve)=>{
@@ -54,7 +52,7 @@ create4thPost({title:'Post Four',body:'This is Post Four'})
 
 
 //delete function
-function Deletes(post){
+function Deletes(){
     return new Promise((resolve,reject)=>{
         if(posts.length>0){
             setTimeout(() => {
@@ -76,3 +74,23 @@ let timerId=setInterval(()=>{
     });
 }, 1000)
 
+
+//delete function immidietly 
+function DeleteImmidelty(){
+    return new Promise((resolve,reject)=>{
+        if(posts.length>0){
+            setTimeout(() => {
+                posts.pop();
+                resolve();
+            }, 1000);
+        }else{
+            reject('Error : Array is empty now');
+        }
+
+    });
+}
+
+
+create4thPost({title:'Post Five',body:'This is Post Five'})
+.then(DeleteImmidelty)
+.catch(err=> console.log(err));
