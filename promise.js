@@ -51,6 +51,7 @@ function create4thPost(post){
 create4thPost({title:'Post Four',body:'This is Post Four'})
 
 
+
 //delete function
 function Deletes(){
     return new Promise((resolve,reject)=>{
@@ -75,8 +76,9 @@ let timerId=setInterval(()=>{
 }, 1000)
 
 
+
 //delete function immidietly 
-function DeleteImmidelty(){
+function DeleteNew(){
     return new Promise((resolve,reject)=>{
         if(posts.length>0){
             setTimeout(() => {
@@ -89,8 +91,25 @@ function DeleteImmidelty(){
 
     });
 }
-
-
 create4thPost({title:'Post Five',body:'This is Post Five'})
+.then(DeleteNew)
+.catch(err=> console.log(err));
+
+
+
+//delete function immidietly which not depend on setTimeout timer value
+function DeleteImmidelty(){
+    return new Promise((resolve,reject)=>{
+        if(posts.length>0){
+                posts.pop();
+                resolve();   
+        }else{
+            reject('Error : Array is empty now');
+        }
+    });
+}
+
+
+create4thPost({title:'Post Six',body:'This is Post Six'})
 .then(DeleteImmidelty)
 .catch(err=> console.log(err));
