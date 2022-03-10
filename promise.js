@@ -29,7 +29,7 @@ function createPost(post){
             }else{
                 reject('Error : Something went wrong');
             }
-        }, 2000);
+        }, 1000);
     });
     
 }
@@ -48,7 +48,31 @@ function create4thPost(post){
              resolve()
          }, 4000);
 
-    });
-    
+    });  
 }
 create4thPost({title:'Post Four',body:'This is Post Four'})
+
+
+//delete function
+function Deletes(post){
+    return new Promise((resolve,reject)=>{
+        if(posts.length>0){
+            setTimeout(() => {
+                posts.pop();
+                resolve();
+            }, 5000);
+        }else{
+            reject('Error : Array is empty now');
+        }
+
+    });
+}
+let timerId=setInterval(()=>{
+    Deletes()
+    .then(console.log(`Last Post Deleted`))
+    .catch(err=> {
+        console.log(err)
+        clearInterval(timerId);
+    });
+}, 1000)
+
