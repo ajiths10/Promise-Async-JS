@@ -113,3 +113,52 @@ function DeleteImmidelty(){
 create4thPost({title:'Post Six',body:'This is Post Six'})
 .then(DeleteImmidelty)
 .catch(err=> console.log(err));
+
+
+//
+const promise1 = Promise.resolve('Hello World');
+const promise2 = 10;
+const promise3 = new Promise((resolve,reject)=>
+    setTimeout(resolve,2000,'Goodbye')
+    );
+const promise4 = fetch('https://jsonplaceholder.typicode.com/users')
+.then(res=>res.json());
+
+Promise.all([promise1,promise2,promise3,promise4])
+.then(values=>console.log(values));
+
+
+
+
+
+
+//Async / Await
+async function init(){
+    await create4thPost({title:'Post Seven',body:'This is Post Sven'});
+    getposts();
+}
+init ();
+
+
+
+
+//Async /Await / fetch
+async function fetchUser(){
+    const ress = await fetch('https://jsonplaceholder.typicode.com/users');
+
+    const data = await ress.json();
+    console.log(data);
+}
+fetchUser();
+
+
+
+//
+const lastActivicty =updatelastActivityTime (()=>{
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            posts.lastActivictyTime=new Date().getTime();
+            resolve(posts.lastActivictyTime)
+        },1000);
+    })
+});
