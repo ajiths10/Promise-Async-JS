@@ -3,7 +3,7 @@ const posts=[
     {title:'Post Two', body:'This is Post Two',CreatedAt :new Date().getTime()}
 ];
 let intervalId =0;
-
+let divSelector=document.getElementById('divSelect');
 function getposts(){
         clearInterval(intervalId);    
         intervalId= setInterval(()=>{
@@ -12,7 +12,8 @@ function getposts(){
             output+=`<li> ${post.title} Last Updated = ${(new Date().getTime() - post.CreatedAt)/1000} seconds ago</li>`;
             });
             //console.log( `Timer id=${intervalId}`)
-        document.body.innerHTML=output;
+        //document.body.innerHTML=output;
+        divSelector.innerHTML=output;
         },1000)
         
     }
@@ -104,6 +105,7 @@ function DeleteImmidelty(){
                 posts.pop();
                 resolve();   
         }else{
+            divSelector.innerHTML= 'err';
             reject('Error : Array is empty now');
         }
     });
@@ -154,11 +156,11 @@ fetchUser();
 
 
 //
-const lastActivicty =updatelastActivityTime (()=>{
-    return new Promise((resolve,reject)=>{
-        setTimeout(()=>{
-            posts.lastActivictyTime=new Date().getTime();
-            resolve(posts.lastActivictyTime)
-        },1000);
-    })
-});
+// const lastActivicty =updatelastActivityTime (()=>{
+//     return new Promise((resolve,reject)=>{
+//         setTimeout(()=>{
+//             posts.lastActivictyTime=new Date().getTime();
+//             resolve(posts.lastActivictyTime)
+//         },1000);
+//     })
+// });
