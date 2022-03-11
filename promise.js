@@ -105,7 +105,7 @@ function DeleteImmidelty(){
                 posts.pop();
                 resolve();   
         }else{
-            divSelector.innerHTML= 'err';
+            
             reject('Error : Array is empty now');
         }
     });
@@ -114,7 +114,8 @@ function DeleteImmidelty(){
 
 create4thPost({title:'Post Six',body:'This is Post Six'})
 .then(DeleteImmidelty)
-.catch(err=> console.log(err));
+.catch(err=> console.log(err))
+// .finally(divSelector.innerHTML='hi');
 
 
 //
@@ -164,3 +165,4 @@ fetchUser();
 //         },1000);
 //     })
 // });
+console.log('hello world')
