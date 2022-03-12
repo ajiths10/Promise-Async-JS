@@ -4,6 +4,8 @@ const posts=[
 ];
 let intervalId =0;
 let divSelector=document.getElementById('divSelect');
+
+
 function getposts(){
         clearInterval(intervalId);    
         intervalId= setInterval(()=>{
@@ -35,9 +37,14 @@ function createPost(post){
     
 }
 
-createPost({title:'Post Three',body:'This is Post Three'})
- .then(getposts)
- .catch(err=> console.log(err));
+async function printPost(){
+    await createPost({title:'Post Three',body:'This is Post Three'})
+    await getposts();
+    await createPost({title:'Post Four',body:'This is Post Four'})
+    await getposts();
+}
+printPost();
+ 
 
 
 function create4thPost(post){
@@ -49,7 +56,7 @@ function create4thPost(post){
 
     });  
 }
-create4thPost({title:'Post Four',body:'This is Post Four'})
+
 
 
 
@@ -165,4 +172,3 @@ fetchUser();
 //         },1000);
 //     })
 // });
-console.log('hello world')
